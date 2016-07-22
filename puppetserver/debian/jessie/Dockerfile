@@ -13,12 +13,10 @@ ENV \
   PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH
 
 RUN apt-get update \
-  && apt-get install -y curl locales-all \
+  && apt-get install -y curl \
   && curl -O http://apt.puppetlabs.com/puppetlabs-release-pc1-${RELEASE}.deb \
   && dpkg -i puppetlabs-release-pc1-${RELEASE}.deb \
-  && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update \
+  && apt-get update \
   && apt-get install -y --force-yes git \
     puppet-agent=$PUPPET_AGENT_VERSION \
     puppetserver=$PUPPETSERVER_VERSION \
