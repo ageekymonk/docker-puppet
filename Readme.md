@@ -4,6 +4,7 @@
 Version of puppetserver is maintained as is. OS version is appended at the end.
 
 -	[`latest`, `2.4.0-1puppetlabs1-jessie`(*puppetlabs/debian/jessie/Dockerfile*)](https://github.com/ageekymonk/docker-puppet/blob/master/puppetserver/debian/jessie/Dockerfile)
+-	[`latest-wheezy`, `2.4.0-1puppetlabs1-wheezy`(*puppetlabs/debian/wheezy/Dockerfile*)](https://github.com/ageekymonk/docker-puppet/blob/master/puppetserver/debian/wheezy/Dockerfile)
 
 ## Environment Variables
 
