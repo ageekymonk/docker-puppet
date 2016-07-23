@@ -1,3 +1,3 @@
 #!/bin/bash
 
-puppet config set certname ${CERTNAME} --section master
+puppet config set certname ${CERTNAME:-puppetserver} --section master
