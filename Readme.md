@@ -40,7 +40,7 @@ puppetserver:
 ## To build from git repository
 ### Puppetserver
 To build Puppetserver, go to puppetserver/ and run
-    ``` make generate LINUX_DISTRIB=ubuntu LINUX_DISTRIB_VERSION=trusty ```
+    ``` make build LINUX_DISTRIB=ubuntu LINUX_DISTRIB_VERSION=trusty ```
 
 ### Puppetagent
 To build puppetagent, go to puppetagent/\<OS\>/\<version\> and run
