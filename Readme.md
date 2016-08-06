@@ -3,8 +3,8 @@
 
 Version of puppetserver is maintained as is. OS version is appended at the end.
 
--	[`latest`, `2.4.0-1puppetlabs1-jessie`(*puppetlabs/debian/jessie/Dockerfile*)](https://github.com/ageekymonk/docker-puppet/blob/master/puppetserver/debian/jessie/Dockerfile)
--	[`latest-wheezy`, `2.4.0-1puppetlabs1-wheezy`(*puppetlabs/debian/wheezy/Dockerfile*)](https://github.com/ageekymonk/docker-puppet/blob/master/puppetserver/debian/wheezy/Dockerfile)
+-	[`latest`, `2.4.0-1puppetlabs1-jessie`(*puppetserver/Dockerfile_jessie*)](https://github.com/ageekymonk/docker-puppet/blob/master/puppetserver/Dockerfile_jessie)
+-	[`latest-wheezy`, `2.4.0-1puppetlabs1-wheezy`(*puppetserver/Dockerfile_wheezy*)](https://github.com/ageekymonk/docker-puppet/blob/master/puppetserver/Dockerfile_wheezy)
 
 ## Environment Variables
 
@@ -39,8 +39,8 @@ puppetserver:
 
 ## To build from git repository
 ### Puppetserver
-To build Puppetserver, go to puppetserver/\<OS\>/\<version\> and run
-    ``` make build ```
+To build Puppetserver, go to puppetserver/ and run
+    ``` make generate LINUX_DISTRIB=ubuntu LINUX_DISTRIB_VERSION=trusty ```
 
 ### Puppetagent
 To build puppetagent, go to puppetagent/\<OS\>/\<version\> and run
