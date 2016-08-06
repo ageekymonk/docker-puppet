@@ -51,8 +51,9 @@ clean: ## Clean all temporary files
 generate: ## Generate all Dockerfiles
 	${Q}cat $(DOCKER_TEMPLATE) | envsubst > Dockerfile_$(LINUX_DISTRIB_VERSION)
 
+build: TEMPFILE := $(shell mktemp ./temp_dockerfile_XXXXX)
+
 build: ## Build docker container and tag it
-	TEMPFILE := $(shell mktemp ./temp_dockerfile_XXXXX)
 	$(call check_mandatory)
 	${Q}cat $(DOCKER_TEMPLATE) | envsubst > $(TEMPFILE)
 	docker build -t $(IMAGE_TAG) -f $(TEMPFILE) .
