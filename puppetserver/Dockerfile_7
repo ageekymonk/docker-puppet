@@ -1,0 +1,30 @@
+FROM centos:7
+
+MAINTAINER ramzthecoder@gmail.com
+
+EXPOSE 8080 8140
+
+ENV RELEASE 7
+
+ENV \
+  PUPPET_AGENT_VERSION=1.5.2-1.el7 \
+  PUPPETSERVER_VERSION=2.4.0-1.el7 \
+  PUPPETDB_VERSION=4.1.0-1.el7 \
+  PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH
+
+RUN curl -O http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm \
+  && rpm -Uvh puppetlabs-release-pc1-el-7.noarch.rpm \
+  && yum install -y which \
+  && yum install -y crontabs puppet-agent-$PUPPET_AGENT_VERSION \
+    puppetserver-$PUPPETSERVER_VERSION \
+    puppetdb-termini-$PUPPETDB_VERSION \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir /etc/puppetlabs-template && cp -Rf /etc/puppetlabs/* /etc/puppetlabs-template/.
+VOLUME ["/etc/puppetlabs"]
+
+# Configure entrypoint
+COPY /docker-entrypoint.sh /usr/local/bin/
+COPY /docker-entrypoint.d/* /usr/local/bin/docker-entrypoint.d/
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+CMD ["puppetserver", "foreground"]

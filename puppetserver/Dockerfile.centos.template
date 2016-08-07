@@ -10,13 +10,14 @@ ENV \
   PUPPET_AGENT_VERSION=1.5.2-1.el${LINUX_DISTRIB_VERSION} \
   PUPPETSERVER_VERSION=2.4.0-1.el${LINUX_DISTRIB_VERSION} \
   PUPPETDB_VERSION=4.1.0-1.el${LINUX_DISTRIB_VERSION} \
-  PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH
+  PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:${DOLLAR}PATH
 
 RUN curl -O http://yum.puppetlabs.com/puppetlabs-release-pc1-el-${LINUX_DISTRIB_VERSION}.noarch.rpm \
   && rpm -Uvh puppetlabs-release-pc1-el-${LINUX_DISTRIB_VERSION}.noarch.rpm \
-  && yum install -y puppet-agent-$PUPPET_AGENT_VERSION \
-    puppetserver-$PUPPETSERVER_VERSION \
-    puppetdb-termini-$PUPPETDB_VERSION \
+  && yum install -y which \
+  && yum install -y crontabs puppet-agent-${DOLLAR}PUPPET_AGENT_VERSION \
+    puppetserver-${DOLLAR}PUPPETSERVER_VERSION \
+    puppetdb-termini-${DOLLAR}PUPPETDB_VERSION \
   && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /etc/puppetlabs-template && cp -Rf /etc/puppetlabs/* /etc/puppetlabs-template/.

@@ -2,9 +2,16 @@
 
 DIR=/usr/local/bin/docker-entrypoint.d
 
-if [[ -d "$DIR" ]]
+if [[ -f /etc/redhat-release ]]
 then
-  /bin/run-parts --verbose --regex '\.(sh|rb)$' "$DIR"
+    if [[ -d "$DIR" ]]
+    then
+        /usr/bin/run-parts "$DIR"
+    fi
+else
+    if [[ -d "$DIR" ]]
+    then
+        /bin/run-parts --verbose --regex '\.(sh|rb)$' "$DIR"
+    fi
 fi
-
 exec "$@"
